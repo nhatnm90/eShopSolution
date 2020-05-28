@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Linq; 
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +21,7 @@ namespace eShopSolution.Application.Catalog.Products
     {
         private readonly EShopDbContext _context;
         private readonly IStorageService _storageService;
-        public ManageProductService(EShopDbContext context,IStorageService storageService)
+        public ManageProductService(EShopDbContext context, IStorageService storageService)
         {
             _context = context;
             _storageService = storageService;
@@ -62,8 +62,8 @@ namespace eShopSolution.Application.Catalog.Products
                     }
                 }
             };
-            //Save image
-            if(request.ThumbnailImage !=null)
+            //Save image 
+            if (request.ThumbnailImage !=null)
             {
                 product.ProductImages = new List<ProductImage>()
                 {
@@ -81,6 +81,8 @@ namespace eShopSolution.Application.Catalog.Products
             _context.Products.Add(product);
            return await _context.SaveChangesAsync();
         }
+        
+
 
         public async Task<int> Delete(int productId)
         {
@@ -100,7 +102,7 @@ namespace eShopSolution.Application.Catalog.Products
 
         public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
-            //1. Select join
+            //1. Select join 
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId
                         join pic in _context.ProductInCategories on p.Id equals pic.ProductId
